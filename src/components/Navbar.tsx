@@ -11,7 +11,7 @@ export function Navbar({ onTicketsClick, onMusicClick }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 50);
+    const handler = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
@@ -21,61 +21,74 @@ export function Navbar({ onTicketsClick, onMusicClick }: NavbarProps) {
     setMenuOpen(false);
   };
 
+  const navLink = (scrolled: boolean) =>
+    `flex items-center gap-1.5 px-3 py-1.5 text-xs font-display tracking-widest uppercase transition-all duration-200
+    ${scrolled ? "text-temple/70 hover:text-jade-600 hover:bg-jade-50/60" : "text-ivory/80 hover:text-ivory hover:bg-white/8"}`;
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass shadow-md" : "bg-transparent"}`}>
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-        <button onClick={() => scrollTo("hero")} className="flex items-center gap-2 group">
-          <span className="text-2xl">🇱🇰</span>
-          <span className={`font-display font-semibold text-lg transition-colors ${scrolled ? "text-primary" : "text-white"}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled ? "glass-ivory shadow-temple" : "bg-transparent"}`}>
+      {/* Top accent line */}
+      {scrolled && (
+        <div className="absolute top-0 left-0 right-0 h-px"
+          style={{ background: "linear-gradient(to right, transparent, #B8860B 30%, #C8550A 50%, #B8860B 70%, transparent)" }} />
+      )}
+
+      <div className="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+        <button onClick={() => scrollTo("hero")} className="flex items-center gap-2.5 group">
+          <span className="text-xl">🇱🇰</span>
+          <span className={`font-display text-base tracking-widest uppercase transition-colors
+            ${scrolled ? "text-jade-600" : "text-ivory"}`}>
             Lanka Journey
           </span>
         </button>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-1">
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-0.5">
           {[
             { label: "Itinerary", id: "itinerary", icon: MapPin },
             { label: "Gallery", id: "gallery", icon: Image },
           ].map(({ label, id, icon: Icon }) => (
-            <button key={id} onClick={() => scrollTo(id)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
-                ${scrolled ? "text-gray-700 hover:bg-primary/10 hover:text-primary" : "text-white/90 hover:text-white hover:bg-white/10"}`}>
-              <Icon size={15} /> {label}
+            <button key={id} onClick={() => scrollTo(id)} className={navLink(scrolled)}>
+              <Icon size={13} /> {label}
             </button>
           ))}
-          <button onClick={onTicketsClick}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors
-              ${scrolled ? "text-gray-700 hover:bg-primary/10 hover:text-primary" : "text-white/90 hover:text-white hover:bg-white/10"}`}>
-            <Ticket size={15} /> Tickets
+          <button onClick={onTicketsClick} className={navLink(scrolled)}>
+            <Ticket size={13} /> Documents
           </button>
+
+          {/* Gold separator */}
+          <div className={`mx-2 h-4 w-px ${scrolled ? "bg-gold-300/50" : "bg-white/20"}`} />
+
           <button onClick={onMusicClick}
-            className="ml-2 flex items-center gap-1.5 bg-gold text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-gold-500/90 transition-colors">
-            <Music size={15} /> Music
+            className="flex items-center gap-1.5 btn-gold rounded-sm px-4 py-2 text-[10px]">
+            <Music size={12} /> Music
           </button>
         </div>
 
-        {/* Mobile hamburger */}
         <button className="md:hidden p-2" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen
-            ? <X size={22} className={scrolled ? "text-gray-800" : "text-white"} />
-            : <Menu size={22} className={scrolled ? "text-gray-800" : "text-white"} />}
+            ? <X size={20} className={scrolled ? "text-temple" : "text-ivory"} />
+            : <Menu size={20} className={scrolled ? "text-temple" : "text-ivory"} />}
         </button>
       </div>
 
       {menuOpen && (
-        <div className="md:hidden glass border-t border-white/20 px-4 py-3 flex flex-col gap-2">
-          {["itinerary", "gallery"].map(id => (
+        <div className="md:hidden glass-ivory border-t border-gold-300/20 px-4 py-3 flex flex-col gap-1">
+          {[
+            { label: "Itinerary", id: "itinerary" },
+            { label: "Gallery", id: "gallery" },
+          ].map(({ label, id }) => (
             <button key={id} onClick={() => scrollTo(id)}
-              className="text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-primary/10 hover:text-primary capitalize">
-              {id}
+              className="text-left px-3 py-2 text-xs font-display tracking-widest uppercase text-temple/70 hover:text-jade-600 hover:bg-jade-50/40 transition-colors">
+              {label}
             </button>
           ))}
           <button onClick={() => { onTicketsClick(); setMenuOpen(false); }}
-            className="text-left px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-primary/10 hover:text-primary">
-            Tickets
+            className="text-left px-3 py-2 text-xs font-display tracking-widest uppercase text-temple/70 hover:text-jade-600 hover:bg-jade-50/40 transition-colors">
+            Documents
           </button>
           <button onClick={() => { onMusicClick(); setMenuOpen(false); }}
-            className="text-left px-3 py-2 rounded-lg text-sm font-medium bg-gold text-white hover:bg-gold/90">
+            className="mt-1 btn-gold rounded-sm text-center">
             Music
           </button>
         </div>

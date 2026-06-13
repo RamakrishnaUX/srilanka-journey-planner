@@ -3,6 +3,7 @@ import { Plus } from "lucide-react";
 import type { Day } from "../types";
 import { DayCard } from "./DayCard";
 import { DateStrip } from "./DateStrip";
+import { SectionHeading, MandalaBg } from "./Ornaments";
 
 interface ItinerarySectionProps {
   days: Day[];
@@ -27,22 +28,27 @@ export function ItinerarySection({
   };
 
   return (
-    <section id="itinerary" className="py-16 bg-cream">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900">Your Itinerary</h2>
-            <p className="text-gray-500 mt-1">{days.length} days of adventure</p>
-          </div>
+    <section id="itinerary" className="py-20 relative overflow-hidden" style={{ background: "#FDF6E8" }}>
+      {/* Background mandala */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none opacity-[0.04]">
+        <MandalaBg size={500} opacity={1} />
+      </div>
+
+      <div className="max-w-3xl mx-auto px-4 relative z-10">
+        <div className="flex items-start justify-between mb-10">
+          <SectionHeading sub={`${days.length} sacred days of discovery`}>The Sacred Journey</SectionHeading>
+        </div>
+
+        <div className="flex justify-end mb-6">
           <button onClick={onAddDay}
-            className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-xl font-medium hover:bg-primary-600 transition-colors shadow-sm">
-            <Plus size={18} /> Add Day
+            className="btn-jade flex items-center gap-2 rounded-sm">
+            <Plus size={14} /> Add Day
           </button>
         </div>
 
         <DateStrip days={days} activeDay={activeDay} onSelect={handleSelect} />
 
-        <div className="mt-6 space-y-4">
+        <div className="mt-6 space-y-3">
           {days.map((day, i) => (
             <DayCard
               key={day.id}

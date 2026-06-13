@@ -8,6 +8,7 @@ import { ItinerarySection } from "./components/ItinerarySection";
 import { GallerySection } from "./components/GallerySection";
 import { TicketsSection } from "./components/TicketsSection";
 import { QuickActions } from "./components/QuickActions";
+import { AmbientPlayer } from "./components/AmbientPlayer";
 import { AddDayModal } from "./components/modals/AddDayModal";
 import { AddPhotoModal } from "./components/modals/AddPhotoModal";
 import { AddTicketModal } from "./components/modals/AddTicketModal";
@@ -76,12 +77,31 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="bg-primary-700 text-white/70 text-center py-8 text-sm">
-        <p className="text-2xl mb-2">🇱🇰</p>
-        <p className="font-display text-white font-semibold text-lg mb-1">Sri Lanka Journey Planner</p>
-        <p>Your memories, beautifully organised</p>
+      <footer className="relative overflow-hidden text-center py-14"
+        style={{ background: "linear-gradient(160deg, #0f2d16 0%, #1A5C2A 40%, #2C1810 100%)" }}>
+        <div className="absolute top-0 left-0 right-0 h-px"
+          style={{ background: "linear-gradient(to right, transparent, #B8860B 30%, #C8550A 50%, #B8860B 70%, transparent)" }} />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-5">
+          <svg viewBox="0 0 400 400" width="300" height="300" fill="none">
+            {[160,130,100,70,40].map(r=><circle key={r} cx="200" cy="200" r={r} stroke="#B8860B" strokeWidth="0.8"/>)}
+            {Array.from({length:12}).map((_,i)=>{const a=i*30*Math.PI/180;return<line key={i} x1={200+40*Math.cos(a)} y1={200+40*Math.sin(a)} x2={200+160*Math.cos(a)} y2={200+160*Math.sin(a)} stroke="#B8860B" strokeWidth="0.5"/>})}
+          </svg>
+        </div>
+        <div className="relative z-10">
+          <p className="text-4xl mb-3">🇱🇰</p>
+          <h2 className="font-display text-ivory text-xl mb-1 tracking-widest uppercase">Sri Lanka Journey Planner</h2>
+          <div className="flex items-center justify-center gap-3 my-3">
+            <div className="h-px w-12" style={{ background: "linear-gradient(to right, transparent, rgba(184,134,11,0.6))" }} />
+            <svg viewBox="0 0 20 8" width="20" height="8" fill="none">
+              <path d="M10 1 L18 4 L10 7 L2 4 Z" stroke="#B8860B" strokeWidth="0.8" fill="rgba(184,134,11,0.2)"/>
+            </svg>
+            <div className="h-px w-12" style={{ background: "linear-gradient(to left, transparent, rgba(184,134,11,0.6))" }} />
+          </div>
+          <p className="text-ivory/40 font-body italic text-sm">Your memories, beautifully preserved</p>
+        </div>
       </footer>
 
+      <AmbientPlayer />
       <QuickActions
         onAddDay={() => setModal({ type: "addDay" })}
         onAddPhoto={() => setModal({ type: "addPhoto" })}

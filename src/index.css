@@ -2,14 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
 @layer base {
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { @apply bg-cream text-gray-800 font-sans antialiased; }
-  h1, h2, h3, h4 { @apply font-display; }
+
+  body {
+    background-color: #FDF6E8;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(184,134,11,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(26,92,42,0.04) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='%23B8860B' opacity='0.06'/%3E%3Ccircle cx='0' cy='0' r='1' fill='%23B8860B' opacity='0.06'/%3E%3Ccircle cx='60' cy='0' r='1' fill='%23B8860B' opacity='0.06'/%3E%3Ccircle cx='0' cy='60' r='1' fill='%23B8860B' opacity='0.06'/%3E%3Ccircle cx='60' cy='60' r='1' fill='%23B8860B' opacity='0.06'/%3E%3C/svg%3E");
+    color: #2C1810;
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
+    letter-spacing: 0.03em;
+  }
+}
+
+@layer components {
+  /* Ornamental section heading */
+  .ornament-heading {
+    @apply flex items-center gap-4;
+  }
+  .ornament-heading::before,
+  .ornament-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(184,134,11,0.5));
+  }
+  .ornament-heading::before {
+    background: linear-gradient(to left, transparent, rgba(184,134,11,0.5));
+  }
+
+  /* Ornamental border card */
+  .card-oriental {
+    background: #FDF6E8;
+    border: 1px solid rgba(184,134,11,0.2);
+    position: relative;
+  }
+  .card-oriental::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid rgba(184,134,11,0.08);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* Gold shimmer button */
+  .btn-gold {
+    background: linear-gradient(135deg, #B8860B 0%, #D4A017 50%, #B8860B 100%);
+    background-size: 200% 200%;
+    @apply text-ivory font-display tracking-widest text-xs uppercase px-6 py-2.5 shadow-gold transition-all duration-300;
+  }
+  .btn-gold:hover {
+    background-position: right center;
+    @apply shadow-lg -translate-y-0.5;
+  }
+
+  .btn-jade {
+    background: linear-gradient(135deg, #1A5C2A 0%, #2a7a3e 100%);
+    @apply text-ivory font-display tracking-widest text-xs uppercase px-5 py-2.5 shadow-temple transition-all duration-300;
+  }
+  .btn-jade:hover { @apply -translate-y-0.5 shadow-lg; }
 }
 
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-  .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); }
+
+  .glass-ivory {
+    background: rgba(253,246,232,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #B8860B, #D4A017, #956d09);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Mandala background pattern utility */
+  .bg-mandala {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='90' fill='none' stroke='%23B8860B' stroke-width='0.5' opacity='0.3'/%3E%3Ccircle cx='100' cy='100' r='70' fill='none' stroke='%23B8860B' stroke-width='0.5' opacity='0.2'/%3E%3Ccircle cx='100' cy='100' r='50' fill='none' stroke='%23B8860B' stroke-width='0.5' opacity='0.2'/%3E%3C/svg%3E");
+  }
 }

@@ -24,18 +24,18 @@ export function AddDayModal({ open, onClose, onAdd }: AddDayModalProps) {
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Date *</label>
             <input type="date" required value={form.date} onChange={e => setForm(f => ({ ...f, date: e.target.value }))}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
           </div>
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Location *</label>
             <input type="text" required placeholder="e.g. Kandy" value={form.location} onChange={e => setForm(f => ({ ...f, location: e.target.value }))}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
           </div>
         </div>
         <div>
           <label className="text-xs font-medium text-gray-500 block mb-1">Title *</label>
           <input type="text" required placeholder="e.g. Sacred City of Kandy" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
-            className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+            style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
         </div>
         <div>
           <label className="text-xs font-medium text-gray-500 block mb-1">Description</label>

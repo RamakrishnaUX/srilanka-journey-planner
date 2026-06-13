@@ -44,13 +44,13 @@ export function AddTicketModal({ open, onClose, days, defaultDayId, onAdd }: Add
         <div>
           <label className="text-xs font-medium text-gray-500 block mb-1">Document Name *</label>
           <input type="text" required placeholder="e.g. Colombo → Ella Flight" value={name} onChange={e => setName(e.target.value)}
-            className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+            style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Type</label>
             <select value={type} onChange={e => setType(e.target.value as Ticket["type"])}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white">
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }}>
               {["flight", "hotel", "activity", "transport", "other"].map(t => (
                 <option key={t} value={t}>{t.charAt(0).toUpperCase() + t.slice(1)}</option>
               ))}
@@ -59,14 +59,14 @@ export function AddTicketModal({ open, onClose, days, defaultDayId, onAdd }: Add
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Date</label>
             <input type="date" value={date} onChange={e => setDate(e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
           </div>
         </div>
         {days.length > 0 && (
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Link to day (optional)</label>
             <select value={dayId} onChange={e => setDayId(e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white">
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }}>
               <option value="">No specific day</option>
               {days.map((d, i) => <option key={d.id} value={d.id}>Day {i + 1} — {d.title}</option>)}
             </select>

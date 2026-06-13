@@ -56,7 +56,7 @@ export function AddPhotoModal({ open, onClose, days, defaultDayId, onAdd }: AddP
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Image URL *</label>
             <input type="url" required placeholder="https://..." value={url} onChange={e => setUrl(e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
             {url && <img src={url} alt="" className="mt-2 w-full h-36 object-cover rounded-xl" onError={e => (e.currentTarget.style.display = "none")} />}
           </div>
         ) : (
@@ -74,14 +74,14 @@ export function AddPhotoModal({ open, onClose, days, defaultDayId, onAdd }: AddP
         <div>
           <label className="text-xs font-medium text-gray-500 block mb-1">Caption</label>
           <input type="text" placeholder="Describe this memory..." value={caption} onChange={e => setCaption(e.target.value)}
-            className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary" />
+            style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }} />
         </div>
 
         {days.length > 0 && (
           <div>
             <label className="text-xs font-medium text-gray-500 block mb-1">Link to day (optional)</label>
             <select value={dayId} onChange={e => setDayId(e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-primary bg-white">
+              style={{ border: "1px solid rgba(184,134,11,0.25)", background: "#FEFAF2", padding: "8px 12px", fontSize: "0.875rem", outline: "none", fontFamily: "Crimson Text, Georgia, serif", color: "#2C1810", width: "100%" }}>
               <option value="">No specific day</option>
               {days.map((d, i) => <option key={d.id} value={d.id}>Day {i + 1} — {d.title}</option>)}
             </select>
